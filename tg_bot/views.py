@@ -17,14 +17,16 @@ def main_route():
         return jsonify({'message': 'Invalid request'}), 400
     handler.handle()
     return 'Ok'
+#
 
 
+# TEST BD
 # @app.route('/', methods=['GET'])
 # def main_route():
-#     test = Test(
+#     test = TestOne(
 #         id=1,
-#         username='nikitatsiv',
-#         email='nikitatsiv@gmail',
+#         name='nikitatsiv',
+#         test=2,
 #     )
 #     db.session.add(test)
 #     db.session.commit()
