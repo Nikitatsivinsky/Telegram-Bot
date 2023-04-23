@@ -7,11 +7,13 @@ import json
 class StartProcess:
     cmd = None
     name = None
+
     def startprocess(self):
         try:
             subprocess.call(self.cmd, shell=True)
+            print('Status PostgreSQL Server: Started')
         except Exception as ex:
-            print(f'Something went wrong when start {self.name} {ex}' )
+            print(f'Something went wrong when start {self.name} {ex}')
 
 
 class StartPostgresqlServer(StartProcess):
@@ -19,6 +21,7 @@ class StartPostgresqlServer(StartProcess):
      on Ubuntu you can edit sudoers file (sudo visudo) by 'username ALL=NOPASSWD:/usr/sbin/service postgresql start'
      to delete this massage.
     """
+
     def __init__(self, password):
         self.cmd = f'echo {password} | sudo -S service postgresql start'
         self.name = 'PostgreSQL Server'
@@ -50,4 +53,3 @@ class StartNGROK:
         }
         response = requests.get(tg_url, data=json.dumps(data_dict), headers=headers)
         print(f'Status register NGROK: {response} on URL: {self.ngrok_url.public_url}')
-
