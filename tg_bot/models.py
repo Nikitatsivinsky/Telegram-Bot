@@ -44,6 +44,7 @@ class SubCategory(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
+    item_id = db.Column(db.String, db.ForeignKey('items.id'))
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
     category = db.relationship('Category', backref='subcategories')
 
@@ -83,7 +84,7 @@ class Material(db.Model):
 
 
 class Type(db.Model):
-    __tablename__ = 'types'
+    __tablename__ = 'type'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
@@ -93,7 +94,7 @@ class Type(db.Model):
 
 
 class Size(db.Model):
-    __tablename__ = 'sizes'
+    __tablename__ = 'size'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Numeric(3, 1), unique=True, nullable=False)
@@ -115,13 +116,13 @@ class Item(db.Model):
     name = db.Column(db.String(50), nullable=False)
     model = db.Column(db.String(50), nullable=True)
     brand_id = db.Column(db.Integer, db.ForeignKey('brand.id'), nullable=False)
-    applications = db.relationship('Application', backref='application_item', lazy=True)
+    applications = db.Column(db.Integer, db.ForeignKey('application.id'), nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
-    subcategory = db.relationship('SubCategory', backref='subcategory_item', lazy=True)
-    colors = db.relationship('Color', backref='color_item', lazy=True)
-    gender_id = db.Column(db.Integer, db.ForeignKey('gender.id'), nullable=False)
-    materials = db.relationship('Material', backref='material_item', lazy=True)
-    types = db.relationship('Type', backref='types_item', lazy=True)
+    subcategory = db.relationship('SubCategory',  primaryjoin="Item.id==SubCategory.item_id", backref='item')
+    colors = db.Column(db.Integer, db.ForeignKey('color.id'), nullable=False)
+    gender = db.Column(db.Integer, db.ForeignKey('gender.id'), nullable=False)
+    materials = db.Column(db.Integer, db.ForeignKey('material.id'), nullable=False)
+    types = db.Column(db.Integer, db.ForeignKey('type.id'), nullable=False)
     image = db.Column(db.String, nullable=True)
     description = db.Column(db.Text, nullable=True)
     famous = db.Column(db.Integer, nullable=True)
@@ -129,7 +130,7 @@ class Item(db.Model):
     length_cm = db.Column(db.SmallInteger, nullable=True)
     price = db.Column(db.Numeric(scale=2, precision=8), nullable=True)
     discount = db.Column(db.Numeric(scale=2, precision=8), nullable=True)
-    size = db.relationship('Size', backref='size_item', lazy=True)
+    size = db.Column(db.Integer, db.ForeignKey('size.id'), nullable=False)
     weight = db.Column(db.Integer())
     year = db.Column(db.Integer())
 
@@ -221,6 +222,21 @@ class MailDistribution(db.Model):
         return self.email
 
 
+class Order(db.Model):
+    __tablename__ = 'order'
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('profile.id'), nullable=False)
+    cart = db.relationship('Cart', primaryjoin="Order.id==Cart.order_id", backref='order', lazy=True)
+    total_price = db.Column(db.Numeric(10, 2), nullable=False)
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
+    comment = db.Column(db.String(255), nullable=True)
+    ttn = db.Column(db.Numeric(14), nullable=True)
+
+    def __repr__(self):
+        return str(self.id)
+
+
 class Cart(db.Model):
     __tablename__ = 'cart'
 
@@ -228,25 +244,11 @@ class Cart(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('profile.id'), nullable=False)
     item_id = db.Column(db.String(36), db.ForeignKey('items.id'), nullable=False)
     quantity = db.Column(db.Integer, default=1)
+    order_id = db.Column(db.Integer, db.ForeignKey('order.id'))
 
     # __table_args__ = (
     #     db.CheckConstraint('quantity > 0'),
     # )
-
-    def __repr__(self):
-        return str(self.id)
-
-
-class Order(db.Model):
-    __tablename__ = 'orders'
-
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('profile.id'), nullable=False)
-    cart = db.relationship('Cart', backref='cart_order', lazy=True)
-    total_price = db.Column(db.Numeric(10, 2), nullable=False)
-    created_at = db.Column(db.DateTime, server_default=db.func.now())
-    comment = db.Column(db.String(255), nullable=True)
-    ttn = db.Column(db.Numeric(14), nullable=True)
 
     def __repr__(self):
         return str(self.id)
