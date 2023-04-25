@@ -35,8 +35,9 @@ class NovaPoshta:
 
 
 if __name__ == '__main__':
-    document_number = '20450594905521'
-    novaposhta = NovaPoshta(phone='380682789516', document_number=document_number, api_key='d274212c55ef2a0178786d3e14547337')
+    document_number = '20400322842042'
+    novaposhta = NovaPoshta(phone='380669184215', document_number=document_number,
+                            api_key='d274212c55ef2a0178786d3e14547337')
     tracking_status = novaposhta.get_status()
     if tracking_status['success']:
         print(f"\nСтату посылки - {tracking_status['data'][0]['Status']} \n\n"

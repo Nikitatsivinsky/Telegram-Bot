@@ -197,6 +197,7 @@ class Profile(db.Model):
     __tablename__ = 'profile'
 
     id = db.Column(db.Integer, primary_key=True)
+    telegram_id = db.Column(db.Integer)
     user = db.Column(db.String(50))
     login = db.Column(db.String(50))
     password = db.Column(db.String(50))

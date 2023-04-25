@@ -10,7 +10,7 @@ app.config.from_object(AppConfig)
 app.secret_key = os.getenv('SECRET_KEY')
 db = SQLAlchemy(app)
 
-migrate = Migrate(app, db)
+# migrate = Migrate(app, db)
 
 from .views import *
 
