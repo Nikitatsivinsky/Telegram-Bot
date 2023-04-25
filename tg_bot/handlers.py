@@ -76,12 +76,9 @@ class TelegramHandler:
             }
         requests.post(f'{TG_BASE_URL}{self.bot_token}/sendMessage', json=data)
 
-    def send_contact(self, chat_id=None):
-        if self.user:
-            if self.user.user_in_db:
-                self.send_start_massage()
-            data = {
-                'chat_id': self.user.user_chat_id,
+    def get_data_for_send_contact(self, user_chat_id):
+        return {
+                'chat_id': user_chat_id,
                 'text': 'Для коректної роботи надішліть номер телефону.',
                 'reply_markup': {
                     'keyboard': [
@@ -94,22 +91,14 @@ class TelegramHandler:
                     'resize_keyboard': True
                 }
             }
-        else:
-            data = {
-                'chat_id': chat_id,
-                'text': 'Для корректной работы, отправте номер телефона.',
-                'reply_markup': {
-                    'keyboard': [
-                        [{
-                            'text': 'Отправить номер телефона',
-                            'request_contact': True
-                        }]
-                    ],
-                    'one_time_keyboard': True,
-                    'resize_keyboard': True
-                }
-            }
 
+    def send_contact(self, chat_id=None):
+        if self.user:
+            if self.user.user_in_db:
+                self.send_start_massage()
+            data = self.get_data_for_send_contact(self.user.user_chat_id)
+        else:
+            data = self.get_data_for_send_contact(chat_id)
         requests.post(f'{TG_BASE_URL}{self.bot_token}/sendMessage', json=data)
 
     def send_start_massage(self):
