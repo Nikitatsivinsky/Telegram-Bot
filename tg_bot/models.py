@@ -247,9 +247,5 @@ class Cart(db.Model):
     quantity = db.Column(db.Integer, default=1)
     order_id = db.Column(db.Integer, db.ForeignKey('order.id'))
 
-    # __table_args__ = (
-    #     db.CheckConstraint('quantity > 0'),
-    # )
-
     def __repr__(self):
         return str(self.id)

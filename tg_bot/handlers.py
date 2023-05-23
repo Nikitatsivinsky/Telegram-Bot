@@ -1,6 +1,8 @@
 import json
 import os
 
+from flask_paginate import Pagination
+
 from tg_bot.models import *
 import requests
 from .app.novaposhta import NovaPoshta
@@ -23,8 +25,8 @@ class User:
             try:
                 user_telephone = Profile.query.filter_by(telegram_id=self.user_chat_id).first()
                 self.user_phone_number = user_telephone.telephone
-            except Exception:
-                pass
+            except Exception as ex:
+                print(ex)
         self.user_in_db = self.authentification()
         self.register_t_bot_user_id()
 
@@ -117,6 +119,13 @@ class TelegramHandler:
         self.send_markup('Оберіть, що ви хочете зробити?', markup)
 
 
+    def to_main_page(self):
+        return {
+            'text': f'Головна',
+            'callback_data': json.dumps({'route': '/main'})
+        }
+
+
 class MessageHandler(TelegramHandler):
     def __init__(self, data, bot_token):
         super().__init__(bot_token)
@@ -152,8 +161,6 @@ class MessageHandler(TelegramHandler):
                 match self.incoming_message.split():
                     case '/start':
                         self.send_start_massage()
-                    case ['message']:
-                        self.send_message('test message')
                     case _:
                         self.send_start_massage()
 
@@ -161,7 +168,6 @@ class MessageHandler(TelegramHandler):
 class CallbackHandler(TelegramHandler):
     def __init__(self, data, bot_token):
         super().__init__(bot_token)
-
         if not self.user:
             self.user = User(**data.get('from'))
         self.callback_data = json.loads(data.get('data'))
@@ -173,19 +179,40 @@ class CallbackHandler(TelegramHandler):
                     case '/orders':
                         if self.user.user_in_db:
                             orders_list = Order.query.filter(Order.user_id == int(self.user.user_in_db.id)).all()
-                            orders_buttoms = []
-                            # TODO Pagination ?
+                            per_page = 5
+
                             if orders_list:
-                                for order in orders_list:
-                                    orders_buttoms.append([{
+                                if 'page' in self.callback_data:
+                                    page = int(self.callback_data['page'])
+                                else:
+                                    page = 1
+
+                                orders_on_page = orders_list[(page - 1) * per_page: page * per_page]
+                                orders_buttons = []
+                                for order in orders_on_page:
+                                    orders_buttons.append([{
                                         'text': f'Номер замовлення: {order.id}',
                                         'callback_data': json.dumps({'order_id': str(order.id)})
                                     }])
-
+                                pagination = Pagination(page=page, total=len(orders_list), per_page=per_page,
+                                                        record_name='orders')
                                 markup = {
-                                    'inline_keyboard': orders_buttoms
+                                    'inline_keyboard': orders_buttons
                                 }
+                                if pagination.has_next:
+                                    markup['inline_keyboard'].append([{
+                                        'text': 'Наступна',
+                                        'callback_data': json.dumps({'route': '/orders', 'page': page + 1})
+                                    }])
+                                if page > 1:
+                                    markup['inline_keyboard'].append([{
+                                        'text': 'Назад',
+                                        'callback_data': json.dumps({'route': '/orders'})
+                                    }])
+
+                                markup['inline_keyboard'].append([self.to_main_page()])
                                 self.send_markup('Оберіть замовлення', markup)
+
                             else:
                                 self.send_message('Вибачте у Вас немає замовлень.')
                                 self.send_start_massage()
@@ -194,6 +221,8 @@ class CallbackHandler(TelegramHandler):
                     case '/site':
                         self.send_message('https://nikitatsivinsky.github.io/')
                         self.send_start_massage()
+                    case '/main':
+                        self.send_start_massage()
 
             case {'order_id': order_id}:
                 order = Order.query.filter(Order.id == int(order_id)).first()
@@ -201,8 +230,13 @@ class CallbackHandler(TelegramHandler):
                     'text': f'Відстежити посилку',
                     'callback_data': json.dumps({'tracking': str(order.ttn)})
                 }
+                button_back = {
+                    'text': f'Назад',
+                    'callback_data': json.dumps({'route': '/orders'})
+                }
+
                 markup = {
-                    'inline_keyboard': [[button_order_id]]
+                    'inline_keyboard': [[button_order_id], [button_back], [self.to_main_page()]]
                 }
                 self.send_markup('Оберіть, що ви хочете зробити?', markup)
 
@@ -210,14 +244,21 @@ class CallbackHandler(TelegramHandler):
                 novaposhta = NovaPoshta(phone=str(self.user.user_phone_number), document_number=ttn,
                                         api_key=os.getenv('NOVA_POSHTA_API_KEY'))
                 tracking_status = novaposhta.get_status()
-                tracking_str_response = f"\nСтату посылки - {tracking_status['data'][0]['Status']} \n\n " \
-                                        f"Посылка № {ttn} от {tracking_status['data'][0]['SenderFullNameEW']}\n" \
-                                        f"к {tracking_status['data'][0]['RecipientFullName']},\n" \
-                                        f"выехала {tracking_status['data'][0]['DateScan']} \n" \
-                                        f"из {tracking_status['data'][0]['WarehouseSenderAddress']}\n" \
-                                        f"и едет в {tracking_status['data'][0]['RecipientAddress']}.\n" \
-                                        f"Ориентировочная дата доставки {tracking_status['data'][0]['ActualDeliveryDate']},\n" \
-                                        f"просим забрать посылку до {tracking_status['data'][0]['DatePayedKeeping']}," \
-                                        f" т.к. это дата начала платного сохранения посылки."
-                self.send_message(tracking_str_response)
-                self.send_start_massage()
+                if tracking_status['success'] == True:
+                    tracking_str_response = f"\nСтату посылки - {tracking_status['data'][0]['Status']} \n\n " \
+                                            f"Посылка № {ttn} от {tracking_status['data'][0]['SenderFullNameEW']}\n" \
+                                            f"к {tracking_status['data'][0]['RecipientFullName']},\n" \
+                                            f"выехала {tracking_status['data'][0]['DateScan']} \n" \
+                                            f"из {tracking_status['data'][0]['WarehouseSenderAddress']}\n" \
+                                            f"и едет в {tracking_status['data'][0]['RecipientAddress']}.\n" \
+                                            f"Ориентировочная дата доставки {tracking_status['data'][0]['ActualDeliveryDate']},\n" \
+                                            f"просим забрать посылку до {tracking_status['data'][0]['DatePayedKeeping']}," \
+                                            f" т.к. это дата начала платного сохранения посылки."
+                    self.send_message(tracking_str_response)
+                    self.send_start_massage()
+                else:
+                    server_error = 'Пробачте, під час трекінгу посилки, відбулася помилка. :(\n' \
+                                   'Спробуйте пізніше, або зв\'яжіться з нашим менеджером!'
+                    self.send_message(server_error)
+                    self.send_start_massage()
+
