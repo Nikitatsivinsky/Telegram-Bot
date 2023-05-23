@@ -18,34 +18,5 @@ def main_route():
         return jsonify({'message': 'Invalid request'}), 400
     handler.handle()
     return 'Ok'
-#
 
-
-# TEST BD
-# @app.route('/', methods=['GET'])
-# def main_route():
-#     test = TestOne(
-#         id=1,
-#         name='nikitatsiv',
-#         test=2,
-#     )
-#     db.session.add(test)
-#     db.session.commit()
-#     return 'test doned', 201
-
-
-
-
-
-# @app.route('/start', methods=['POST'])
-# def start():
-#
-#     update = request.get_json()
-#
-#     if 'contact' in request.json.get('message'):
-#         phone_number = update['message']['contact']['phone_number']
-#         print('Номер телефона получен: {}'.format(phone_number))
-#     else:
-#         handler = MessageHandler(request.json.get('message'))
-#         handler.handle()
 

@@ -161,8 +161,6 @@ class MessageHandler(TelegramHandler):
                 match self.incoming_message.split():
                     case '/start':
                         self.send_start_massage()
-                    case ['message']:
-                        self.send_message('test message')
                     case _:
                         self.send_start_massage()
 
@@ -170,7 +168,6 @@ class MessageHandler(TelegramHandler):
 class CallbackHandler(TelegramHandler):
     def __init__(self, data, bot_token):
         super().__init__(bot_token)
-
         if not self.user:
             self.user = User(**data.get('from'))
         self.callback_data = json.loads(data.get('data'))
