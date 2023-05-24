@@ -14,8 +14,8 @@ Pet-project Telegram Bot for Shop
 
 # Installation:
 #### Follow the steps below to get started your tests of Telegram Bot:
-* <b><u>Create your own .env file.</u></b> <br>
-You need to create your environment variables. In file .env.template you can see example of your .env file:
+* <b>Create your own .env file.</b> <br>
+⋅⋅⋅You need to create your environment variables. In file .env.template you can see example of your .env file:
 ```env
 #FLASK
 SECRET_KEY - your secret key of Flask application.
@@ -35,6 +35,43 @@ TG_TOKEN - Token of your Telegram Bot.
 NOVA_POSHTA_API_KEY - Your personal Nova Poshta Api Key (Get it!)
 COMPANY_TELEPHONE - Your personal or your company telephone number for tracking parcels using Nova Poshta Api method getStatusDocuments.
 ```
+* <b>Install and set up a server Postgres</b> <br>
+⋅⋅⋅For Linux:
+```bash
+sudo apt update                           
+sudo apt upgrade
+sudo apt install postgresql
+```
+to check your server use:
+```bash
+sudo service postgresql status 
+```
+⋅⋅⋅For Mac:
+1. Visit the PostgreSQL downloads page
+2. Download and open the downloaded package (.dmg) file.
+3. Follow the on-screen instructions to run the installer and complete the installation process.
+to check your server use:
+```bash
+psql --version  
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # My statistic:
 ![](https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=AngelOfDeath&theme=solarized_dark)
