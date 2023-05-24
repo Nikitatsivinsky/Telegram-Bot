@@ -36,7 +36,7 @@ NOVA_POSHTA_API_KEY - Your personal Nova Poshta Api Key (Get it!)
 COMPANY_TELEPHONE - Your personal or your company telephone number for tracking parcels using Nova Poshta Api method getStatusDocuments.
 ```
 2. <b>Install and set up a server Postgres</b> <br>
-⋅⋅*For Linux:
+* For Linux:
 ```bash
 sudo apt update                           
 sudo apt upgrade
@@ -46,7 +46,7 @@ to check your server use:
 ```bash
 sudo service postgresql status 
 ```
-⋅⋅*For Mac:
+* For Mac:
 1. Visit the PostgreSQL downloads page
 2. Download and open the downloaded package (.dmg) file.
 3. Follow the on-screen instructions to run the installer and complete the installation process.
