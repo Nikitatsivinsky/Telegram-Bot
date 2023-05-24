@@ -85,15 +85,14 @@ python run.py
 <br>
 <p align="center">
   <a href="https://nikitatsivinsky.github.io/telegram/telegrambot.html">
-    <img src="https://github.com/AngelOfDeath-UA/pictures/blob/main/telegram_documentation.png" alt="Image alt" />
+    <img src="https://github.com/Nikitatsivinsky/pictures/blob/main/telegram_documentation.png" alt="Image alt" />
   </a>
 </p>
 <br>
 
 
 # My statistic:
-<div align="center">
-<!-- ![](https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=AngelOfDeath&theme=solarized_dark) -->
-![](https://github-profile-summary-cards.vercel.app/api/cards/stats?username=daniilshat&theme=solarized_dark)
-</div>
+![](https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=Nikitatsivinsky&theme=solarized_dark)
+![](https://github-profile-summary-cards.vercel.app/api/cards/stats?username=Nikitatsivinsky&theme=solarized_dark)
+
 
