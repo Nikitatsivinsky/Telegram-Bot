@@ -5,7 +5,7 @@
 Pet-project Telegram Bot for Shop
 ===============================================
 
-### Written by: Nikita Tsivinsky ![](https://komarev.com/ghpvc/?username=Nikitatsivinsky) ![](https://komarev.com/ghpvc/?username=Nikitatsivinsky&label=PROFILE+VIEWS)
+### Written by: Nikita Tsivinsky ![](https://komarev.com/ghpvc/?username=Nikitatsivinsky)
 ### Github: https://github.com/Nikitatsivinsky/
 ### Contributors & Mentors: @klymenok and @acman
 # Description
