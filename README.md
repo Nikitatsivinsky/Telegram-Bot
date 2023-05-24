@@ -92,6 +92,8 @@ python run.py
 
 
 # My statistic:
+<div align="center">
 <!-- ![](https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=AngelOfDeath&theme=solarized_dark) -->
 ![](https://github-profile-summary-cards.vercel.app/api/cards/stats?username=daniilshat&theme=solarized_dark)
+</div>
 
