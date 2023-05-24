@@ -63,10 +63,11 @@ to check your server use:
 psql --version  
 ```
 
-<center><b>⚠️ You can use Docker container instead installing Postgresql on your OS.⚠️<b></center>
+<div align="center"><b>⚠️ You can use Docker container instead installing Postgresql on your OS.⚠️<b></div>
 
-
-
+---
+**⚠️ You can use Docker container instead installing Postgresql on your OS.⚠️**
+---
 
 
 
