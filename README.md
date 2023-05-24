@@ -1,4 +1,4 @@
-![Image alt](https://github.com/AngelOfDeath-UA/pictures/blob/main/rd3.png)
+![Image alt](https://github.com/Nikitatsivinsky/pictures/blob/main/rd3.png)
 
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=30&duration=4000&pause=1500&color=805FA6&width=500&lines=%D0%92%D1%87%D0%B8%D0%BC%D0%BE+%D0%BA%D0%BE%D0%B4%D1%83%D0%B2%D0%B0%D1%82%D0%B8+%D0%BC%D0%B0%D0%B9%D0%B1%D1%83%D1%82%D0%BD%D1%94...;%D0%92%D1%87%D0%B8%D0%BC%D0%BE+%D0%B2%D0%B5%D1%80%D1%81%D1%82%D0%B0%D1%82%D0%B8+%D0%BC%D0%B0%D0%B9%D0%B1%D1%83%D1%82%D0%BD%D1%94...;%D0%92%D1%87%D0%B8%D0%BC%D0%BE+%D1%82%D0%B5%D1%81%D1%82%D1%83%D0%B2%D0%B0%D1%82%D0%B8+%D0%BC%D0%B0%D0%B9%D0%B1%D1%83%D1%82%D0%BD%D1%94...)](https://git.io/typing-svg)
 
@@ -81,8 +81,14 @@ pip install -r requirements.txt
 ```bash
 python run.py
 ```
-  
-
+<br>
+<br>
+<p align="center">
+  <a href="https://nikitatsivinsky.github.io/telegram/telegrambot.html">
+    <img src="https://github.com/AngelOfDeath-UA/pictures/blob/main/telegram_documentation.png" alt="Image alt" />
+  </a>
+</p>
+<br>
 
 
 # My statistic:
