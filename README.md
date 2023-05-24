@@ -68,7 +68,8 @@ psql --version
 3. <b>Install NGROK</b><br>
  * For all OS - on <code>[Web Site](https://ngrok.com/download)</code> - download and install NGROK.
 <br>
-4. <b>Create Python Virtual Environment and install requirements.txt</b> <br>:
+4. <b>Create Python Virtual Environment and install requirements.txt</b> <br>
+  
 ```python
 pip install -r requirements.txt 
 ```
