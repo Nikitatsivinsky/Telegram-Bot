@@ -12,7 +12,10 @@ Pet-project Telegram Bot for Shop
 #### This is the Pet-Project Telegram Bot Repository of the "Python Developer" course from robot_dream, student Nikita Tsivinsky.
 [![](https://github.com/AngelOfDeath-UA/angelofdeath-ua.github.io/blob/main/img/button_doc.png)](https://angelofdeath-ua.github.io/)                       [![](https://raw.githubusercontent.com/AngelOfDeath-UA/angelofdeath-ua.github.io/main/img/button.png)](https://t.me/nike_shop_delivery_bot)
 
-
+# Installation:
+#### Follow the steps below to get started your tests of Telegram Bot:
+* 1) Create your own .env file.
+ <You need to create your environment variables. In file .env.template you can see example of your .env file:>
 
 # My statistic:
 ![](https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=AngelOfDeath&theme=solarized_dark)
