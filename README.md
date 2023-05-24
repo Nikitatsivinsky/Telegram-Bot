@@ -65,17 +65,13 @@ psql --version
 
 <div align="center"><b>⚠️ You can use Docker container instead installing Postgresql on your OS.⚠️<b></div>
 
----
-**⚠️ You can use Docker container instead installing Postgresql on your OS.⚠️**
----
-
-
-
-
-
-
-
-
+3. <b>Install NGROK</b> <br>
+  For all OS - on <code>[Web Site](https://ngrok.com/download)</code> - download and install NGROK.
+4. <b>Create Python Virtual Environment and install requirements.txt</b> <br>:
+  
+```python
+pip install -r requirements.txt 
+```
 
 
 
