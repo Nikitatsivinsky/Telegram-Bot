@@ -16,9 +16,24 @@ Pet-project Telegram Bot for Shop
 #### Follow the steps below to get started your tests of Telegram Bot:
 * Create your own .env file.
 #####You need to create your environment variables. In file .env.template you can see example of your .env file:
-```javascript
-var s = "Подсветка JavaScript";
-alert(s);
+```env
+#FLASK
+SECRET_KEY - your secret key of Flask application.
+DEBUG - Bool value of Flask application.
+HOST - Address of your host of Flask application (default = 0.0.0.0)
+PORT - Address of your port of Flask application (default = 8443)
+#AUTO START POSTGRESQL SERVER AND NGROK WITH TELEGRAM WEBHOOK (TESTED ON UBUNTU)
+AUTO_START - Bool value Auto Start Postgres Server (you need to install Server on your operating system) and NGROK (inside app.start_postgresql_ngrok.StartNGROK you can see function "register_webhook" - this function set WebHook to Telegram API)
+#DATABASE
+DATABASE_URI - Database Uniform Resource Identifier
+SQLALCHEMY_TRACK_MODIFICATIONS - Bool variable of configuration keys for Flask application.
+#POSTGRESQL SERVER AUTOSTART
+USER_PASSWORD - Password of your Operational System User (inside app.start_postgresql_ngrok.StartProcess you can see function "startprocess" which start your Postgres Server from bash. So, to start Server App use "sudo", and password needs for this.)
+#TELEGRAM
+TG_TOKEN - Token of your Telegram Bot.
+#NOVA POSHTA
+NOVA_POSHTA_API_KEY - Your personal Nova Poshta Api Key (Get it!)
+COMPANY_TELEPHONE - Your personal or your company telephone number for tracking parcels using Nova Poshta Api method getStatusDocuments.
 ```
 
 # My statistic:
