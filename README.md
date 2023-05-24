@@ -64,6 +64,7 @@ psql --version
 ```
 
 <div align="center"><b>⚠️ You can use Docker container instead installing Postgresql on your OS.⚠️<b></div>
+<br>
 
 3. <b>Install NGROK</b><br>
  * For all OS - on <code>[Web Site](https://ngrok.com/download)</code> - download and install NGROK.
@@ -73,6 +74,14 @@ psql --version
 ```python
 pip install -r requirements.txt 
 ```
+<br>
+
+5. <b> Run Flask Web application</b> <br>
+
+```bash
+python run.py
+```
+  
 
 
 
