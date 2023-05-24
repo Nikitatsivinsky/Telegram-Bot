@@ -14,7 +14,7 @@ Pet-project Telegram Bot for Shop
 
 # Installation:
 #### Follow the steps below to get started your tests of Telegram Bot:
-* <b>Create your own .env file.</b> <br>
+* <b><u>Create your own .env file.</u></b> <br>
 You need to create your environment variables. In file .env.template you can see example of your .env file:
 ```env
 #FLASK
