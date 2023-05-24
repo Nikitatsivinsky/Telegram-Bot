@@ -47,18 +47,23 @@ to check your server use:
 sudo service postgresql status 
 ```
 * For Mac:
-1. Visit the PostgreSQL downloads page
+1. <code>[Visit the PostgreSQL downloads page](https://www.postgresql.org/download/macosx/)</code>
 2. Download and open the downloaded package (.dmg) file.
 3. Follow the on-screen instructions to run the installer and complete the installation process.
 to check your server use:
 ```bash
 psql --version  
 ```
+* For Windows::
+1. <code>[Visit the PostgreSQL downloads page](https://www.postgresql.org/download/windows/)</code>
+2. Download and open the downloaded installer (.exe) file.
+3. Follow the on-screen instructions to run the installer and complete the installation process. Make sure to remember the password you set for the "postgres" user during the installation.
+to check your server use:
+```bash
+psql --version  
+```
 
-
-
-
-
+##⚠️ You can use Docker container instead installing Postgresql on your OS.⚠️
 
 
 
