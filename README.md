@@ -14,7 +14,7 @@ Pet-project Telegram Bot for Shop
 
 # Installation:
 #### Follow the steps below to get started your tests of Telegram Bot:
-1. <b>Create your own .env file.</b> <br>
+1. <b>Create you own environment file.</b> <br>
 You need to create your environment variables. In file .env.template you can see example of your .env file:
 ```env
 #FLASK
@@ -35,7 +35,7 @@ TG_TOKEN - Token of your Telegram Bot.
 NOVA_POSHTA_API_KEY - Your personal Nova Poshta Api Key (Get it!)
 COMPANY_TELEPHONE - Your personal or your company telephone number for tracking parcels using Nova Poshta Api method getStatusDocuments.
 ```
-2. <b>Install and set up a server Postgres</b> <br>
+2. <b>Install server Postgres</b> <br>
 * For Linux:
 ```bash
 sudo apt update                           
@@ -65,18 +65,60 @@ psql --version
 
 <div align="center"><b>⚠️ You can use Docker container instead installing Postgresql on your OS.⚠️<b></div>
 <br>
+  
+3. <b>Set up server Postgres</b><br>
+ 1. Open a command prompt or terminal and log in as a user with superuser privileges (such as a root user or a user with sudo privileges). <br>
+  Run the psql command to enter an interactive Postgres shell:
+ ```bash
+ sudo -u postgres psql
+ ```
+  
+ 2. Create a new table named tgbot:
+ ```bash
+ CREATE DATABASE tgbot;
+ ```
+    
+ 3. Create a new user with the CREATE USER command:
+ ```bash
+ CREATE USER "user" WITH PASSWORD "user";
+ ```
+  
+ 4. Assign the required privileges to the user. For example, to give it full rights to all databases, you can run the following command:
+ ```bash
+ GRANT ALL PRIVILEGES ON DATABASE tgbot TO "user";
+ ```
+  
+ 5. Connect to the tgbot database:
+ ```bash
+ \c tgbot
+ ```
+  
+ 6. Activate the uuid-ossp extension with the following command:
+ ```bash
+ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+ ```
+  
+ 7. Exit the interactive Postgres shell by typing \q or pressing Ctrl+D.
+ ```bash
+ \q
+ ```
+4. <b>Add test values in the database (possible via PyCharm or DataGrid)</b><br>
+Connect via: ```bash postgresql://user:user@localhost:5432/tgbot ```
+  1. Add the user entity to the profile table (leave telegram_id empty, it will be filled in automatically)
+specify the phone number that will connect to the Telegram bot.
+  2. Add to the order table an order with a real TTN of Nova Poshta for tests.
 
-3. <b>Install NGROK</b><br>
+5. <b>Install NGROK</b><br>
  * For all OS - on <code>[Web Site](https://ngrok.com/download)</code> - download and install NGROK.
 <br>
-4. <b>Create Python Virtual Environment and install requirements.txt</b> <br>
+6. <b>Create Python Virtual Environment and install requirements.txt</b> <br>
   
 ```python
 pip install -r requirements.txt 
 ```
 <br>
-
-5. <b> Run Flask Web application</b> <br>
+  
+7. <b> Run Flask Web application</b> <br>
 
 ```bash
 python run.py
