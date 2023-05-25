@@ -67,7 +67,7 @@ psql --version
 <br>
 
 3. <b>Set up server Postgres</b> <br>
-* For Mac:
+* If you use Docker you need to do this inside container.
  1. Open a command prompt or terminal and log in as a user with superuser privileges (such as a root user or a user with sudo privileges). <br>
  Run the psql command to enter an interactive Postgres shell:
  ```bash
@@ -77,27 +77,27 @@ psql --version
  ```bash
  CREATE DATABASE tgbot;
  ```
-   3. Create a new user with the CREATE USER command:
+  3. Create a new user with the CREATE USER command:
  ```bash
  CREATE USER "user" WITH PASSWORD "user";
  ```
   
- * Assign the required privileges to the user. For example, to give it full rights to all databases, you can run the following command:
+ 4. Assign the required privileges to the user. For example, to give it full rights to all databases, you can run the following command:
  ```bash
  GRANT ALL PRIVILEGES ON DATABASE tgbot TO "user";
  ```
   
- * Connect to the tgbot database:
+ 5. Connect to the tgbot database:
  ```bash
  \c tgbot
  ```
   
- * Activate the uuid-ossp extension with the following command:
+ 6. Activate the uuid-ossp extension with the following command:
  ```bash
  CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
  ```
   
- * Exit the interactive Postgres shell by typing \q or pressing Ctrl+D.
+ 7. Exit the interactive Postgres shell by typing \q or pressing Ctrl+D.
  ```bash
  \q
  ```
