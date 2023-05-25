@@ -66,13 +66,12 @@ psql --version
 <div align="center"><b>⚠️ You can use Docker container instead installing Postgresql on your OS.⚠️<b></div>
 <br>
   
-3. <b>Set up server Postgres</b><br>
-  1. Open a command prompt or terminal and log in as a user with superuser privileges (such as a root user or a user with sudo privileges). <br>
-  Run the psql command to enter an interactive Postgres shell:
- ```bash
- sudo -u postgres psql
- ```
-  
+3. `<b>Set up server Postgres</b>`<br>
+   1. Open a command prompt or terminal and log in as a user with superuser privileges (such as a root user or a user with sudo privileges). <br>
+      Run the psql command to enter an interactive Postgres shell:
+      ```bash
+      sudo -u postgres psql
+      ```
   2. Create a new table named tgbot:
  ```bash
  CREATE DATABASE tgbot;
