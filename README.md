@@ -67,38 +67,38 @@ psql --version
 <br>
   
 3. <b>Set up server Postgres</b><br>
- 1. Open a command prompt or terminal and log in as a user with superuser privileges (such as a root user or a user with sudo privileges). <br>
+ * Open a command prompt or terminal and log in as a user with superuser privileges (such as a root user or a user with sudo privileges). <br>
   Run the psql command to enter an interactive Postgres shell:
  ```bash
  sudo -u postgres psql
  ```
   
- 2. Create a new table named tgbot:
+ * Create a new table named tgbot:
  ```bash
  CREATE DATABASE tgbot;
  ```
     
- 3. Create a new user with the CREATE USER command:
+ * Create a new user with the CREATE USER command:
  ```bash
  CREATE USER "user" WITH PASSWORD "user";
  ```
   
- 4. Assign the required privileges to the user. For example, to give it full rights to all databases, you can run the following command:
+ * Assign the required privileges to the user. For example, to give it full rights to all databases, you can run the following command:
  ```bash
  GRANT ALL PRIVILEGES ON DATABASE tgbot TO "user";
  ```
   
- 5. Connect to the tgbot database:
+ * Connect to the tgbot database:
  ```bash
  \c tgbot
  ```
   
- 6. Activate the uuid-ossp extension with the following command:
+ * Activate the uuid-ossp extension with the following command:
  ```bash
  CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
  ```
   
- 7. Exit the interactive Postgres shell by typing \q or pressing Ctrl+D.
+ * Exit the interactive Postgres shell by typing \q or pressing Ctrl+D.
  ```bash
  \q
  ```
