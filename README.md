@@ -67,18 +67,19 @@ psql --version
 <br>
   
 3. <b>Set up server Postgres</b><br>
+  
 1. Open a command prompt or terminal and log in as a user with superuser privileges (such as a root user or a user with sudo privileges). <br>
   Run the psql command to enter an interactive Postgres shell:
  ```bash
  sudo -u postgres psql
  ```
   
- * Create a new table named tgbot:
+2. Create a new table named tgbot:
  ```bash
  CREATE DATABASE tgbot;
  ```
     
- * Create a new user with the CREATE USER command:
+3. Create a new user with the CREATE USER command:
  ```bash
  CREATE USER "user" WITH PASSWORD "user";
  ```
